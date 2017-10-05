@@ -1,14 +1,14 @@
-#Dependencies: 
+# Dependencies: 
 
-Python 3.6 64 bits version
-Nltk 3.2.4
-Scikit-learn 0.19
-Gensim 2.3.0
-Numpy 1.12.1
-Pandas 0.20.1
+Python 3.6 64 bits version
+Nltk 3.2.4
+Scikit-learn 0.19
+Gensim 2.3.0
+Numpy 1.12.1
+Pandas 0.20.1
 
 
-#Short Description:
+# Short Description:
 
 This project represents my activity as a summer intern at Faculty of Automation Control and Computers from University of Politehnica Bucharest.
 
@@ -16,20 +16,20 @@ The main focus of this project is to predict if responses from twitter are gener
 
 In order to get the best performance we tried out some several approaches which will be described bellow.
 
-#Motivation: 
+# Motivation: 
 
 Given the fact that bots are more and more present among us on social networks, trying to detect them using their responses to some subjects, could help a lot for further researches on social media regarding human behavior or public opinions, excluding the bots as much as possible.
 
 
-#Dataset:
+# Dataset:
 
 The dataset was taken from kaggle (www.kaggle.com/c/human-or-machine-generated-text/data) and is consisted from 3 files: train, validation and test. 
 
 The files contains 4 fields each, except train, which has no flag values: 
-Indexing field
-Context field ( is always human generated and represents a dialogue between multiple speakers)
-Response field( can be either human or bot generated)
-Human-generated field ( a flag which indicates if response is human generated [1] or not [0])
+Indexing field
+Context field ( is always human generated and represents a dialogue between multiple speakers)
+Response field( can be either human or bot generated)
+Human-generated field ( a flag which indicates if response is human generated [1] or not [0])
 
 Train contains around 7 millions lines, being a balanced dataset (50% human generated responses) and validation is about 500k lines.
 
@@ -43,21 +43,21 @@ Output: - for evaluating the score on kaggle you should submit a csv file contai
 - and example and other details could be found here: www.kaggle.com/c/human-or-machine-generated-text#evaluation
 
 
-#Approaches:
+# Approaches:
 
-#1.Bag of words: 
+# 1.Bag of words: 
  
 First of all, I tried the well known bag of words representation using tf-idf as feature and Multinomial Bayes as classifier, after getting rid of stop words and useless tags.
 Even though this method works really well on document topics classification, on our problem, the classifier performed poorly. 
 
 From this, we can see that bots don`t speak just on some particular subject/area, but rather just throwing random phrases.
 
-#2.Frequency of common words: 
+# 2.Frequency of common words: 
 
 Starting from the assumption that bots usually cannot reply properly to a given context, I took as features the number of word which appear in both context and response for each pair. For a better accuracy I used nltk to lemmatize the tokens in order to reduce the vocabulary. 
 After training with SGD Logistic Regression and SVM with a rbf kernel I still couldn`t get a good score. This may result due to the fact that a lot of words are misspelled and thus even if a word basically exists in both (context and response) it doesn`t have the same form even if is lemmatized ( ex: good and gud ).
 
-#3. Similarity of words and phrases:  
+# 3. Similarity of words and phrases:  
 
 After all, I tried to use a pre-trained word2vec model in order to use as features the phrases similarity and the best 3 similarities between each word from context and response. 
 This scenario gave me the best roc_auc score after partially training it(just 500k random chosen samples) with an SVM.
