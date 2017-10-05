@@ -35,11 +35,11 @@ Train contains around 7 millions lines, being a balanced dataset (50% human gene
 
 The text is already pre-processed and due to the BPE encoding, several combinations of ‘@@ ‘ can be found in text. For more info about this you can check the link listed above.
 
-Observations: - in some cases, after removing the ‘@@ ‘ combinations, some unexpected tokens could appear, several words being put together as a single token (ex: livingontheedge);
+Observations: -  in some cases, after removing the ‘@@ ‘ combinations, some unexpected tokens could appear, several words being put together as a single token (ex: livingontheedge);
 - due to large amount of gathered data, other language than english can appear;
 
 
-Output: - for evaluating the score on kaggle you should submit a csv file containing an indexing column and one more column which represent the probability of responses from validation file to be human generated;
+Output: -  for evaluating the score on kaggle you should submit a csv file containing an indexing column and one more column which represent the probability of responses from validation file to be human generated;
 - and example and other details could be found here: www.kaggle.com/c/human-or-machine-generated-text#evaluation
 
 
@@ -50,12 +50,12 @@ Output: - for evaluating the score on kaggle you should submit a csv file contai
 First of all, I tried the well known bag of words representation using tf-idf as feature and Multinomial Bayes as classifier, after getting rid of stop words and useless tags.
 Even though this method works really well on document topics classification, on our problem, the classifier performed poorly. 
 
-From this, we can see that bots don`t speak just on some particular subject/area, but rather just throwing random phrases.
+From this, we can see that bots do not speak just on some particular subject/area, but rather just throwing random phrases.
 
 # 2.Frequency of common words: 
 
 Starting from the assumption that bots usually cannot reply properly to a given context, I took as features the number of word which appear in both context and response for each pair. For a better accuracy I used nltk to lemmatize the tokens in order to reduce the vocabulary. 
-After training with SGD Logistic Regression and SVM with a rbf kernel I still couldn`t get a good score. This may result due to the fact that a lot of words are misspelled and thus even if a word basically exists in both (context and response) it doesn`t have the same form even if is lemmatized ( ex: good and gud ).
+After training with SGD Logistic Regression and SVM with a rbf kernel I still could not get a good score. This may result due to the fact that a lot of words are misspelled and thus even if a word basically exists in both (context and response) it does not have the same form even if is lemmatized ( ex: good and gud ).
 
 # 3. Similarity of words and phrases:  
 
