@@ -136,7 +136,6 @@ if __name__ == '__main__': #avoid recursive spawning of subprocesses
     y_validation = numpy.asarray(target_values_validation)
     y_validation = y_validation[:, numpy.newaxis]
     X_validation = numpy.asarray(X_validation_list)
-    X_validation = X_validation.reshape(-1, 1)
     print(y_validation.shape)
     print(X_validation.shape)
 
