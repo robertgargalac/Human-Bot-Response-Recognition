@@ -14,7 +14,7 @@ from sklearn import metrics
 import csv
 from GeneralFunctions import *
 
-#Geting the cosine similarity between phrase`s vectors obtained by summing up every word vector
+#Geting the cosine similarity between phrase`s vectors obtained by summing up every mean of word vector
 def get_features(lem_response, lem_context, X):
     sum_response = 0
     sum_context = 0
